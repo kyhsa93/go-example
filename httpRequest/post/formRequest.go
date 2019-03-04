@@ -1,4 +1,4 @@
-package main
+package post
 
 import (
 	"io/ioutil"
@@ -6,7 +6,8 @@ import (
 	"net/url"
 )
 
-func main() {
+// FormRequest -
+func FormRequest() []byte {
 	// http.PostForm example
 	response, error := http.PostForm("http://httpbin.org/post", url.Values{"Name": {"Lee"}, "Age": {"10"}})
 	if error != nil {
@@ -17,8 +18,8 @@ func main() {
 
 	// check Response
 	responseBody, error := ioutil.ReadAll(response.Body)
-	if error == nil {
-		str := string(responseBody)
-		println(str)
+	if error != nil {
+		panic(error)
 	}
+	return responseBody
 }

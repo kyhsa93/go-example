@@ -1,4 +1,4 @@
-package main
+package post
 
 import (
 	"bytes"
@@ -6,7 +6,8 @@ import (
 	"net/http"
 )
 
-func main() {
+// Request -
+func Request() []byte {
 	// http.Post example
 	requestBody := bytes.NewBufferString("Post plain text")
 	response, error := http.Post("http://httpbin.org/post", "text/plain", requestBody)
@@ -18,8 +19,9 @@ func main() {
 
 	// check Response
 	responseBody, error := ioutil.ReadAll(response.Body)
-	if (error) == nil {
-		str := string(responseBody)
-		println(str)
+	if error != nil {
+		panic(error)
 	}
+
+	return responseBody
 }

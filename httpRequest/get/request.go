@@ -1,12 +1,12 @@
-package main
+package get
 
 import (
-	"fmt"
 	"io/ioutil"
 	"net/http"
 )
 
-func main() {
+// Request -
+func Request() string {
 	// GET request
 	response, error := http.Get("http://csharp.news")
 	if error != nil {
@@ -20,5 +20,6 @@ func main() {
 	if error != nil {
 		panic(error)
 	}
-	fmt.Printf("%s\n", string(data))
+	// fmt.Printf("%s\n", string(data))
+	return string(data)
 }

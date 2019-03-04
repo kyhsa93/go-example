@@ -1,12 +1,12 @@
-package main
+package get
 
 import (
-	"fmt"
 	"io/ioutil"
 	"net/http"
 )
 
-func main() {
+// HTTPClient -
+func HTTPClient() string {
 	// create request object
 	request, error := http.NewRequest("GET", "http://csharp.tips/feed/rss", nil)
 	if error != nil {
@@ -27,5 +27,6 @@ func main() {
 	// print result
 	bytes, _ := ioutil.ReadAll(response.Body)
 	str := string(bytes) // byte to string
-	fmt.Println(str)
+	// fmt.Println(str)
+	return str
 }

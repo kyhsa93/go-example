@@ -1,4 +1,4 @@
-package main
+package post
 
 import (
 	"bytes"
@@ -7,13 +7,13 @@ import (
 	"net/http"
 )
 
-// Person -
-type Person struct {
-	Name string
-	Age  int
-}
+// HTTPClient -
+func HTTPClient() []byte {
+	type Person struct {
+		Name string
+		Age  int
+	}
 
-func main() {
 	person := Person{"Alex", 10}
 	personBytes, _ := xml.Marshal(person)
 	buff := bytes.NewBuffer(personBytes)
@@ -37,8 +37,8 @@ func main() {
 
 	// check Response
 	responseBody, error := ioutil.ReadAll(response.Body)
-	if error == nil {
-		str := string(responseBody)
-		println(str)
+	if error != nil {
+		panic(error)
 	}
+	return responseBody
 }
